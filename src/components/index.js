@@ -4,8 +4,6 @@ import VueBlockProperty from "./VueBlockProperty.vue";
 import VueBlocksContainer from "./VueBlocksContainer.vue";
 import VueLink from "./VueLink.vue";
 
-Vue.compone
-
 const Components = {
   VueBlock,
   VueBlockProperty,
