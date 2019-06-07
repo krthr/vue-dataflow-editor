@@ -702,6 +702,14 @@
     cssnano-preset-default "^4.0.0"
     postcss "^7.0.0"
 
+"@krthr/vue-dataflow-editor@^1.2.3":
+  version "1.2.3"
+  resolved "https://registry.yarnpkg.com/@krthr/vue-dataflow-editor/-/vue-dataflow-editor-1.2.3.tgz#84d9ee0462b5c30ed410587bae5588a1c62114ca"
+  integrity sha512-NWJVwteMgMryEGxCZ/zpiOjaJ6HV0KKRsUo5hjPpD7P2Ddw+xH3T8JJ25BJ/F4R1HrFDhx63TxCSYuHtQwQ4sQ==
+  dependencies:
+    core-js "^2.6.5"
+    vue "^2.6.10"
+
 "@mrmlnc/readdir-enhanced@^2.2.1":
   version "2.2.1"
   resolved "https://registry.yarnpkg.com/@mrmlnc/readdir-enhanced/-/readdir-enhanced-2.2.1.tgz#524af240d1a360527b730475ecfa1344aa540dde"
