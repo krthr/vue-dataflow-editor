@@ -1,6 +1,6 @@
 {
   "name": "@krthr/vue-dataflow-editora",
-  "version": "1.2.3",
+  "version": "1.2.4",
   "description": "Vue2 dataflow graph editor",
   "private": false,
   "main": "./dist/vue-dataflow-editor.common.js",
