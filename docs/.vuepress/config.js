@@ -1,6 +1,6 @@
 module.exports = {
-  title: "Hello VuePress",
-  description: "Just playing around",
+  title: "Vue Dataflow Editor",
+  description: "Vue 2 dataflow graph editor",
 
   themeConfig: {
     nav: [
@@ -9,7 +9,9 @@ module.exports = {
       { text: "External", link: "https://google.com" }
     ],
 
-    repo: "",
+    repo: "https://github.com/krthr/vue-dataflow-editor",
+    docsDir: "docs",
+    editLinks: true,
 
     sidebar: "auto",
 

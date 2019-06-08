@@ -12,6 +12,7 @@
     "docs:dev": "vuepress dev docs",
     "docs:build": "vuepress build docs"
   },
+  "license": "MIT",
   "files": [
     "dist/*",
     "*.json"
