@@ -7,18 +7,94 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
 
-    <link rel="stylesheet" href="https://unpkg.com/@krthr/vue-dataflow-editor@1.2.3/dist/vue-dataflow-editor.css">
+    <link rel="stylesheet" href="https://unpkg.com/@krthr/vue-dataflow-editor@1.2.4/dist/vue-dataflow-editor.css">
 </head>
 
 <body>
-    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 
-    <script src="https://unpkg.com/@krthr/vue-dataflow-editor@1.2.3/dist/vue-dataflow-editor.umd.js"></script>
-    <script>
-        console.log(
-            Vue
-        )
+    <div id="app">
+        <vue-blocks-container ref="container" :blocksContent="blocks" :scene.sync="scene" class="container" />
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js">
     </script>
+    <script src="https://unpkg.com/@krthr/vue-dataflow-editor@1.2.4/dist/vue-dataflow-editor.umd.js"></script>
+    <script>
+        const app = new Vue({
+            data: function () {
+                return {
+                    blocks: [{
+                        name: 'test',
+                        title: 'Test block',
+                        family: 'Test',
+                        description: 'Description text',
+                        fields: [{
+                                name: 'in1',
+                                type: 'event',
+                                attr: 'input'
+                            },
+                            {
+                                name: 'in2',
+                                type: 'event',
+                                attr: 'input'
+                            },
+                            {
+                                name: 'out1',
+                                type: 'event',
+                                attr: 'output'
+                            },
+                            {
+                                name: 'out2',
+                                type: 'event',
+                                attr: 'output'
+                            }
+                        ]
+                    }],
+                    scene: {
+                        blocks: [{
+                                id: 1,
+                                x: 0,
+                                y: 0,
+                                name: 'test',
+                                title: 'Test block',
+                                values: {
+                                    property: [{
+                                        name: 'message',
+                                        type: 'string'
+                                    }]
+                                }
+                            },
+                            {
+                                id: 2,
+                                x: 0,
+                                y: 50,
+                                name: 'test',
+                                title: 'Test block 2',
+                                values: {
+                                    property: [{
+                                        name: 'message',
+                                        type: 'string'
+                                    }]
+                                }
+                            }
+                        ],
+                        links: [],
+                        container: {
+                            centerX: 0,
+                            centerY: 0,
+                            scale: 1
+                        }
+                    }
+                }
+            },
+            el: '#app',
+
+            components: {
+                ...window['vue-dataflow-editor'].default
+            }
+        })
+    </script>
+
+
 </body>
 
 </html>

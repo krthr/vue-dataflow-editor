@@ -25,10 +25,12 @@ import VueLink from "./VueLink";
 
 export default {
   name: "VueBlockContainer",
+
   components: {
     VueBlock,
     VueLink
   },
+
   props: {
     blocksContent: {
       type: Array,
@@ -36,14 +38,17 @@ export default {
         return [];
       }
     },
+
     scene: {
       type: Object,
       default: { blocks: [], links: [], container: {} }
     },
+
     options: {
       type: Object
     }
   },
+
   mounted() {
     document.documentElement.addEventListener(
       "mousemove",
@@ -64,6 +69,7 @@ export default {
     this.importBlocksContent();
     this.importScene();
   },
+
   beforeDestroy() {
     document.documentElement.removeEventListener(
       "mousemove",
@@ -86,6 +92,7 @@ export default {
       true
     );
   },
+
   created() {
     this.mouseX = 0;
     this.mouseY = 0;
@@ -107,23 +114,23 @@ export default {
       container: {}
     };
   },
-  data() {
-    return {
-      dragging: false,
-      //
-      centerX: 0,
-      centerY: 0,
-      scale: 1,
-      //
-      nodes: [],
-      blocks: [],
-      links: [],
-      //
-      tempLink: null,
-      selectedBlock: null,
-      hasDragged: false
-    };
-  },
+
+  data: () => ({
+    dragging: false,
+    //
+    centerX: 0,
+    centerY: 0,
+    scale: 1,
+    //
+    nodes: [],
+    blocks: [],
+    links: [],
+    //
+    tempLink: null,
+    selectedBlock: null,
+    hasDragged: false
+  }),
+
   computed: {
     optionsForChild() {
       return {
@@ -137,6 +144,7 @@ export default {
         }
       };
     },
+
     container() {
       return {
         centerX: this.centerX,
@@ -224,6 +232,7 @@ export default {
       return lines;
     }
   },
+
   methods: {
     // Events
     /** @param e {MouseEvent} */
@@ -675,10 +684,12 @@ export default {
       this.$emit("update:scene", this.exportScene());
     }
   },
+
   watch: {
     blocksContent() {
       this.importBlocksContent();
     },
+    
     scene() {
       this.importScene();
     }

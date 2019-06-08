@@ -1,5 +1,5 @@
 {
-  "name": "@krthr/vue-dataflow-editora",
+  "name": "@krthr/vue-dataflow-editor",
   "version": "1.2.4",
   "description": "Vue2 dataflow graph editor",
   "private": false,
@@ -12,13 +12,10 @@
   },
   "files": [
     "dist/*",
-    "src/*",
-    "public/*",
-    "*.json",
-    "*.js"
+    "*.json"
   ],
   "dependencies": {
-    "@krthr/vue-dataflow-editor": "^1.2.3",
+    "cache-loader": "^4.0.0",
     "core-js": "^2.6.5",
     "vue": "^2.6.10"
   },
@@ -32,6 +29,7 @@
     "eslint-plugin-vue": "^5.0.0",
     "less": "^3.9.0",
     "less-loader": "^5.0.0",
-    "vue-template-compiler": "^2.6.10"
+    "vue-template-compiler": "^2.6.10",
+    "vuepress": "^1.0.0"
   }
 }

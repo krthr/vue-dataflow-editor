@@ -12,20 +12,23 @@
 <script>
 export default {
   name: "VueBlockProperty",
+
   props: ["property"],
-  data() {
-    return {
-      properties: []
-    };
-  },
+
+  data: () => ({
+    properties: []
+  }),
+
   methods: {
     loadProperties() {
       this.properties = this.property;
     },
+
     save() {
       this.$emit("save", this.properties);
     }
   },
+
   watch: {
     property() {
       this.loadProperties();
@@ -47,7 +50,7 @@ export default {
 
   background: #ffffff;
   border: 1px solid red;
-  .property {
-  }
+
+  .property {}
 }
 </style>

@@ -1,13 +1,13 @@
 <template>
   <svg width="100%" height="100%">
-    <g v-for="p in renderedPathes" :key="p">
+    <g v-for="(p, index) in renderedPathes" :key="index">
       <path v-if="outline" :d="p.data" :style="p.outlineStyle"></path>
       <path :d="p.data" :style="p.style"></path>
     </g>
     <g>
       <path
-        v-for="a in renderedArrows"
-        :key="a"
+        v-for="(a, index) in renderedArrows"
+        :key="index"
         d="M -1 -1 L 0 1 L 1 -1 z"
         :style="a.style"
         :transform="a.transform"
@@ -30,10 +30,12 @@ export default {
       default: false
     }
   },
+
   methods: {
     distance(x1, y1, x2, y2) {
       return Math.sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1));
     },
+
     computeConnectionPoint(x1, y1, x2, y2, t) {
       let dist = this.distance(x1, y1, x2, y2);
       let p0 = { x: x1, y: y1 };
@@ -51,6 +53,7 @@ export default {
       return { x: x, y: y };
     }
   },
+
   computed: {
     renderedPathes() {
       if (!this.lines) {
@@ -70,6 +73,7 @@ export default {
 
       return pathes;
     },
+
     renderedArrows() {
       if (!this.lines) {
         return [];
