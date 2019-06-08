@@ -8,7 +8,9 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "build-bundle": "vue-cli-service build --target lib --name vue-dataflow-editor ./src/components/index.js"
+    "build-bundle": "vue-cli-service build --target lib --name vue-dataflow-editor ./src/components/index.js",
+    "docs:dev": "vuepress dev docs",
+    "docs:build": "vuepress build docs"
   },
   "files": [
     "dist/*",
