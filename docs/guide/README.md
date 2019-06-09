@@ -1,5 +1,7 @@
 > Based on [vue-blocks](https://github.com/ghostiam/vue-blocks). A [@ghostiam](https://github.com/ghostiam)'s project.
 
+# Installation
+
 ## npm
 
 ```
