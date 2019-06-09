@@ -1,6 +1,5 @@
 module.exports = {
-  title: "Vue Dataflow Editor",
-  description: "Vue 2 dataflow graph editor",
+  base: "/vue-dataflow-editor/",
 
   themeConfig: {
     nav: [
@@ -17,6 +16,23 @@ module.exports = {
 
     serviceWorker: {
       updatePopup: true
+    }
+  },
+
+  markdown: {
+    lineNumbers: true
+  },
+
+  locales: {
+    "/": {
+      lang: "en-US",
+      title: "Vue Dataflow Editor",
+      description: "Vue 2 dataflow graph editor"
+    },
+    "/es": {
+      lang: "es-CO",
+      title: "Vue Dataflow Editor",
+      description: "Editor grafico para Vue 2"
     }
   }
 };
