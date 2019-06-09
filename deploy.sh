@@ -17,6 +17,5 @@ git add -A
 git commit -m 'deploy'
 
 # if you are deploying to https://<USERNAME>.github.io/<REPO>
-git push -f krthr:lilofa98@github.com/krthr/vue-dataflow-editor.git master:gh-pages
-
-cd -
+git remote add origin https://github.com/krthr/vue-dataflow-editor.git
+git push -f origin master:gh-pages

@@ -4,7 +4,8 @@ module.exports = {
   themeConfig: {
     nav: [
       { text: "Home", link: "/" },
-      { text: "Guide", link: "/guide/" },
+      // { text: "Guide", link: "/guide/" },
+      { text: "API Reference", link: "/api/" },
       { text: "External", link: "https://google.com" }
     ],
 
@@ -28,11 +29,14 @@ module.exports = {
       lang: "en-US",
       title: "Vue Dataflow Editor",
       description: "Vue 2 dataflow graph editor"
-    },
-    "/es": {
+    }
+
+    /**
+     "/es/": {
       lang: "es-CO",
       title: "Vue Dataflow Editor",
       description: "Editor grafico para Vue 2"
     }
+     */
   }
 };

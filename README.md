@@ -1,29 +1,48 @@
 # vue-dataflow-editor
 
-## Project setup
+> Based on [vue-blocks](https://github.com/ghostiam/vue-blocks). A [@ghostiam](https://github.com/ghostiam)'s project.
+
+## npm
+
 ```
-yarn install
+npm i @krthr/vue-dataflow-editor
 ```
 
-### Compiles and hot-reloads for development
-```
-yarn run serve
-```
-
-### Compiles and minifies for production
-```
-yarn run build
-```
-
-### Run your tests
-```
-yarn run test
+```html
+<template>
+  <vue-blocks-container
+    class="container"
+    :blocks-content="[]"
+    :scene.sync="{}"
+  />
+</template>
 ```
 
-### Lints and fixes files
-```
-yarn run lint
-```
+## browser
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+```html
+<body>
+  <div id="app">
+    <vue-blocks-container
+      ref="container"
+      :blocks-content="[]"
+      :scene.sync="{}"
+      class="container"
+    />
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://unpkg.com/@krthr/vue-dataflow-editor@latest/dist/vue-dataflow-editor.umd.min.js"></script>
+  <script>
+    new Vue({
+      el: "#app",
+
+      // ...
+
+      components: {
+        ...window["vue-dataflow-editor"].default
+      }
+    });
+  </script>
+</body>
+```
