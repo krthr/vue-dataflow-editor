@@ -6,6 +6,22 @@
 npm i @krthr/vue-dataflow-editor
 ```
 
+Import the lib on `app.js`
+
+```js
+// app.js or main.js, or the main file
+// where you create the vue app
+import Vue from "vue";
+// other imports
+
+import "@krthr/vue-dataflow-editor";
+import "@krthr/vue-dataflow-editor/dist/vue-dataflow-editor.css";
+
+const app = new Vue({
+  /* ... */
+});
+```
+
 ```html
 <template>
   <vue-blocks-container
