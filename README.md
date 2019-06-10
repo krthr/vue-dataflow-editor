@@ -1,6 +1,6 @@
 # vue-dataflow-editor
 
-![](./docs/.vuepress/public/img.png)
+![](https://raw.githubusercontent.com/krthr/vue-dataflow-editor/master/docs/.vuepress/public/img.PNG)
 > Based on [vue-blocks](https://github.com/ghostiam/vue-blocks). A [@ghostiam](https://github.com/ghostiam)'s project.
 
 ## npm
