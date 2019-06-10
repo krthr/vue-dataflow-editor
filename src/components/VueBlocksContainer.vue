@@ -1,7 +1,7 @@
 <template>
   <div class="vue-container">
-    <VueLink :lines="lines"/>
-    <VueBlock
+    <vue-link :lines="lines"></vue-link>
+    <vue-block
       v-for="block in blocks"
       :key="block.id"
       v-bind.sync="block"
@@ -12,7 +12,7 @@
       @linkingBreak="linkingBreak(block, $event)"
       @select="blockSelect(block)"
       @delete="blockDelete(block)"
-    />
+    ></vue-block>
   </div>
 </template>
 
@@ -20,15 +20,12 @@
 import merge from "deepmerge";
 import mouseHelper from "../helpers/mouse";
 
-import VueBlock from "./VueBlock";
-import VueLink from "./VueLink";
-
 export default {
   name: "VueBlockContainer",
 
   components: {
-    VueBlock,
-    VueLink
+    VueBlock: () => import("./VueBlock"),
+    VueLink: () => import("./VueLink")
   },
 
   props: {
@@ -47,72 +44,6 @@ export default {
     options: {
       type: Object
     }
-  },
-
-  mounted() {
-    document.documentElement.addEventListener(
-      "mousemove",
-      this.handleMove,
-      true
-    );
-    document.documentElement.addEventListener(
-      "mousedown",
-      this.handleDown,
-      true
-    );
-    document.documentElement.addEventListener("mouseup", this.handleUp, true);
-    document.documentElement.addEventListener("wheel", this.handleWheel, true);
-
-    this.centerX = this.$el.clientWidth / 2;
-    this.centerY = this.$el.clientHeight / 2;
-
-    this.importBlocksContent();
-    this.importScene();
-  },
-
-  beforeDestroy() {
-    document.documentElement.removeEventListener(
-      "mousemove",
-      this.handleMove,
-      true
-    );
-    document.documentElement.removeEventListener(
-      "mousedown",
-      this.handleDown,
-      true
-    );
-    document.documentElement.removeEventListener(
-      "mouseup",
-      this.handleUp,
-      true
-    );
-    document.documentElement.removeEventListener(
-      "wheel",
-      this.handleWheel,
-      true
-    );
-  },
-
-  created() {
-    this.mouseX = 0;
-    this.mouseY = 0;
-
-    this.lastMouseX = 0;
-    this.lastMouseY = 0;
-
-    this.minScale = 0.2;
-    this.maxScale = 5;
-
-    this.linking = false;
-    this.linkStartData = null;
-
-    this.inputSlotClassName = "inputSlot";
-
-    this.defaultScene = {
-      blocks: [],
-      links: [],
-      container: {}
-    };
   },
 
   data: () => ({
@@ -233,8 +164,76 @@ export default {
     }
   },
 
+  created() {
+    this.mouseX = 0;
+    this.mouseY = 0;
+
+    this.lastMouseX = 0;
+    this.lastMouseY = 0;
+
+    this.minScale = 0.2;
+    this.maxScale = 5;
+
+    this.linking = false;
+    this.linkStartData = null;
+
+    this.inputSlotClassName = "inputSlot";
+
+    this.defaultScene = {
+      blocks: [],
+      links: [],
+      container: {}
+    };
+  },
+
+  mounted() {
+    document.documentElement.addEventListener(
+      "mousemove",
+      this.handleMove,
+      true
+    );
+    document.documentElement.addEventListener(
+      "mousedown",
+      this.handleDown,
+      true
+    );
+    document.documentElement.addEventListener("mouseup", this.handleUp, true);
+    document.documentElement.addEventListener("wheel", this.handleWheel, true);
+
+    this.centerX = this.$el.clientWidth / 2;
+    this.centerY = this.$el.clientHeight / 2;
+
+    this.importBlocksContent();
+    this.importScene();
+  },
+
+  beforeDestroy() {
+    document.documentElement.removeEventListener(
+      "mousemove",
+      this.handleMove,
+      true
+    );
+    document.documentElement.removeEventListener(
+      "mousedown",
+      this.handleDown,
+      true
+    );
+    document.documentElement.removeEventListener(
+      "mouseup",
+      this.handleUp,
+      true
+    );
+    document.documentElement.removeEventListener(
+      "wheel",
+      this.handleWheel,
+      true
+    );
+  },
+
   methods: {
-    // Events
+    /**
+     * Events
+     */
     /** @param e {MouseEvent} */
     handleMove(e) {
       let mouse = mouseHelper.getMousePosition(this.$el, e);
@@ -268,6 +267,7 @@ export default {
         };
       }
     },
+
     handleDown(e) {
       const target = e.target || e.srcElement;
       if (
@@ -287,6 +287,7 @@ export default {
         if (e.preventDefault) e.preventDefault();
       }
     },
+
     handleUp(e) {
       const target = e.target || e.srcElement;
 
@@ -309,6 +310,7 @@ export default {
         this.linkStartData = null;
       }
     },
+
     handleWheel(e) {
       const target = e.target || e.srcElement;
       if (this.$el.contains(target)) {
@@ -339,7 +341,10 @@ export default {
         this.updateScene();
       }
     },
-    // Processing
+
+    /**
+     * Processing
+     */
     getConnectionPos(block, slotNumber, isInput) {
       if (!block || slotNumber === -1) {
         return undefined;
@@ -377,7 +382,10 @@ export default {
 
       return { x: x, y: y };
     },
-    // Linking
+
+    /**
+     * Linking
+     */
     linkingStart(block, slotNumber) {
       this.linkStartData = { block: block, slotNumber: slotNumber };
       let linkStartPos = this.getConnectionPos(
@@ -394,6 +402,7 @@ export default {
 
       this.linking = true;
     },
+
     linkingStop(targetBlock, slotNumber) {
       if (this.linkStartData && targetBlock && slotNumber > -1) {
         this.links = this.links.filter(value => {
@@ -426,6 +435,7 @@ export default {
       this.tempLink = null;
       this.linkStartData = null;
     },
+
     linkingBreak(targetBlock, slotNumber) {
       if (targetBlock && slotNumber > -1) {
         let findLink = this.links.find(value => {
@@ -452,12 +462,16 @@ export default {
         }
       }
     },
+
     removeLink(linkID) {
       this.links = this.links.filter(value => {
         return !(value.id === linkID);
       });
     },
-    // Blocks
+
+    /**
+     * Add new Block to the escene
+     */
     addNewBlock(nodeName, x, y) {
       let maxID = Math.max(
         0,
@@ -490,6 +504,7 @@ export default {
 
       this.updateScene();
     },
+
     createBlock(node, id) {
       let inputs = [];
       let outputs = [];
@@ -535,6 +550,7 @@ export default {
         values: values
       };
     },
+
     deselectAll(withoutID = null) {
       this.blocks.forEach(value => {
         if (value.id !== withoutID && value.selected) {
@@ -542,6 +558,7 @@ export default {
         }
       });
     },
+
     // Events
     blockSelect(block) {
       block.selected = true;
@@ -549,6 +566,7 @@ export default {
       this.deselectAll(block.id);
       this.$emit("blockSelect", block);
     },
+
     blockDeselect(block) {
       block.selected = false;
 
@@ -558,6 +576,7 @@ export default {
 
       this.$emit("blockDeselect", block);
     },
+
     blockDelete(block) {
       if (block.selected) {
         this.blockDeselect(block);
@@ -572,6 +591,7 @@ export default {
       });
       this.updateScene();
     },
+
     //
     prepareBlocks(blocks) {
       return blocks
@@ -598,6 +618,7 @@ export default {
           return !!b;
         });
     },
+
     prepareBlocksLinking(blocks, links) {
       if (!blocks) {
         return [];
@@ -631,11 +652,13 @@ export default {
 
       return newBlocks;
     },
+
     importBlocksContent() {
       if (this.blocksContent) {
         this.nodes = merge([], this.blocksContent);
       }
     },
+
     importScene() {
       let scene = merge(this.defaultScene, this.scene);
 
@@ -664,6 +687,7 @@ export default {
         this.scale = container.scale;
       }
     },
+
     exportScene() {
       let clonedBlocks = merge([], this.blocks);
       let blocks = clonedBlocks.map(value => {
@@ -680,6 +704,7 @@ export default {
         container: this.container
       };
     },
+
     updateScene() {
       this.$emit("update:scene", this.exportScene());
     }
@@ -689,7 +714,7 @@ export default {
     blocksContent() {
       this.importBlocksContent();
     },
-    
+
     scene() {
       this.importScene();
     }

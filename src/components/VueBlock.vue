@@ -30,24 +30,41 @@
 
 <script>
 export default {
-  beforeDestroy() {
-    document.documentElement.removeEventListener(
-      "mousemove",
-      this.handleMove,
-      true
-    );
+  name: "VueBlock",
 
-    document.documentElement.removeEventListener(
-      "mousedown",
-      this.handleDown,
-      true
-    );
+  props: {
+    x: {
+      type: Number,
+      default: 0,
+      validator: function(val) {
+        return typeof val === "number";
+      }
+    },
+    y: {
+      type: Number,
+      default: 0,
+      validator: function(val) {
+        return typeof val === "number";
+      }
+    },
+    selected: Boolean,
+    title: {
+      type: String,
+      default: "Title"
+    },
+    inputs: Array,
+    outputs: Array,
 
-    document.documentElement.removeEventListener(
-      "mouseup",
-      this.handleUp,
-      true
-    );
+    options: {
+      type: Object
+    }
+  },
+
+  data() {
+    return {
+      width: this.options.width,
+      hasDragged: false
+    };
   },
 
   computed: {
@@ -79,13 +96,6 @@ export default {
     this.dragging = false;
   },
 
-  data() {
-    return {
-      width: this.options.width,
-      hasDragged: false
-    };
-  },
-
   mounted() {
     document.documentElement.addEventListener(
       "mousemove",
@@ -100,6 +110,26 @@ export default {
     );
 
     document.documentElement.addEventListener("mouseup", this.handleUp, true);
+  },
+
+  beforeDestroy() {
+    document.documentElement.removeEventListener(
+      "mousemove",
+      this.handleMove,
+      true
+    );
+
+    document.documentElement.removeEventListener(
+      "mousedown",
+      this.handleDown,
+      true
+    );
+
+    document.documentElement.removeEventListener(
+      "mouseup",
+      this.handleUp,
+      true
+    );
   },
 
   methods: {
@@ -186,36 +216,6 @@ export default {
 
       this.$emit("update:x", left);
       this.$emit("update:y", top);
-    }
-  },
-
-  name: "VueBlock",
-
-  props: {
-    x: {
-      type: Number,
-      default: 0,
-      validator: function(val) {
-        return typeof val === "number";
-      }
-    },
-    y: {
-      type: Number,
-      default: 0,
-      validator: function(val) {
-        return typeof val === "number";
-      }
-    },
-    selected: Boolean,
-    title: {
-      type: String,
-      default: "Title"
-    },
-    inputs: Array,
-    outputs: Array,
-
-    options: {
-      type: Object
     }
   }
 };

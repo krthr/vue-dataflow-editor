@@ -31,29 +31,6 @@ export default {
     }
   },
 
-  methods: {
-    distance(x1, y1, x2, y2) {
-      return Math.sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1));
-    },
-
-    computeConnectionPoint(x1, y1, x2, y2, t) {
-      let dist = this.distance(x1, y1, x2, y2);
-      let p0 = { x: x1, y: y1 };
-      let p1 = { x: x1 + dist * 0.25, y: y1 };
-      let p2 = { x: x2 - dist * 0.25, y: y2 };
-      let p3 = { x: x2, y: y2 };
-
-      let c1 = (1 - t) * (1 - t) * (1 - t);
-      let c2 = 3 * ((1 - t) * (1 - t)) * t;
-      let c3 = 3 * (1 - t) * (t * t);
-      let c4 = t * t * t;
-
-      let x = c1 * p0.x + c2 * p1.x + c3 * p2.x + c4 * p3.x;
-      let y = c1 * p0.y + c2 * p1.y + c3 * p2.y + c4 * p3.y;
-      return { x: x, y: y };
-    }
-  },
-
   computed: {
     renderedPathes() {
       if (!this.lines) {
@@ -100,6 +77,29 @@ export default {
       });
 
       return arrows;
+    }
+  },
+
+  methods: {
+    distance(x1, y1, x2, y2) {
+      return Math.sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1));
+    },
+
+    computeConnectionPoint(x1, y1, x2, y2, t) {
+      let dist = this.distance(x1, y1, x2, y2);
+      let p0 = { x: x1, y: y1 };
+      let p1 = { x: x1 + dist * 0.25, y: y1 };
+      let p2 = { x: x2 - dist * 0.25, y: y2 };
+      let p3 = { x: x2, y: y2 };
+
+      let c1 = (1 - t) * (1 - t) * (1 - t);
+      let c2 = 3 * ((1 - t) * (1 - t)) * t;
+      let c3 = 3 * (1 - t) * (t * t);
+      let c4 = t * t * t;
+
+      let x = c1 * p0.x + c2 * p1.x + c3 * p2.x + c4 * p3.x;
+      let y = c1 * p0.y + c2 * p1.y + c3 * p2.y + c4 * p3.y;
+      return { x: x, y: y };
     }
   }
 };

@@ -19,6 +19,12 @@ export default {
     properties: []
   }),
 
+  watch: {
+    property() {
+      this.loadProperties();
+    }
+  },
+
   methods: {
     loadProperties() {
       this.properties = this.property;
@@ -26,12 +32,6 @@ export default {
 
     save() {
       this.$emit("save", this.properties);
-    }
-  },
-
-  watch: {
-    property() {
-      this.loadProperties();
     }
   }
 };
@@ -51,6 +51,7 @@ export default {
   background: #ffffff;
   border: 1px solid red;
 
-  .property {}
+  .property {
+  }
 }
 </style>
