@@ -1,7 +1,11 @@
 {
   "name": "@krthr/vue-dataflow-editor",
   "version": "1.2.5",
-  "description": "Vue2 dataflow graph editor",
+  "description": "Vue 2 dataflow graph editor",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/krthr/vue-dataflow-editor.git"
+  },
   "private": false,
   "main": "./dist/vue-dataflow-editor.common.js",
   "scripts": {
