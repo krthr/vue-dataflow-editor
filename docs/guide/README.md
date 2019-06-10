@@ -24,7 +24,7 @@ const app = new Vue({
 });
 ```
 
-```html
+```vue
 <template>
   <vue-blocks-container
     class="container"
@@ -37,6 +37,12 @@ const app = new Vue({
 ## browser
 
 ```html
+<head>
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/@krthr/vue-dataflow-editor@latest/dist/vue-dataflow-editor.css"
+  />
+</head>
 <body>
   <div id="app">
     <vue-blocks-container
@@ -51,13 +57,9 @@ const app = new Vue({
   <script src="https://unpkg.com/@krthr/vue-dataflow-editor@latest/dist/vue-dataflow-editor.umd.min.js"></script>
   <script>
     new Vue({
-      el: "#app",
+      el: "#app"
 
       // ...
-
-      components: {
-        ...window["vue-dataflow-editor"].default
-      }
     });
   </script>
 </body>

@@ -1,6 +1,6 @@
 ---
 home: true
-# heroImage: /hero.png
+heroImage: /img.png
 actionText: Get Started →
 actionLink: /guide/
 footer: MIT Licensed | Copyright © 2019

@@ -19,7 +19,7 @@ sidebarDepth: 6
 </template>
 
 <script>
-export default {  
+export default {
   data: function() {
     return {
       blocks: [
@@ -162,3 +162,45 @@ declare type BlockLinks {
 ### options
 
 - type: `Object | undefined`
+
+## `<vue-blocks-container />` Methods
+
+### addNewBlock(nodeName, x, y)
+
+Add a new block of type `nodeName` at the coordinates (`x`, `y`)
+
+- nodeName: `String`
+- x: `Integer`
+- y: `Integer`
+
+```vue
+<!-- Add two 'test' blocks to the scene -->
+<template>
+  <div id="app">
+    <vue-blocks-container
+      ref="container"
+      :blocks-content="..."
+      :scene.sync="..."
+      class="container"
+    />
+  </div>
+</template>
+
+<script>
+export default {
+  // ...
+  mounted() {
+    this.$refs.container.addNewBlock("test", 0, 0);
+    this.$refs.container.addNewBlock("test", 100, 250);
+  }
+};
+</script>
+```
+
+## `<vue-blocks-container />` Events
+
+### blockSelect → block
+
+### blockDeselect → block
+
+### blockDelete → block

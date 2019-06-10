@@ -1,5 +1,6 @@
 # vue-dataflow-editor
 
+![](./docs/.vuepress/public/img.png)
 > Based on [vue-blocks](https://github.com/ghostiam/vue-blocks). A [@ghostiam](https://github.com/ghostiam)'s project.
 
 ## npm
@@ -54,10 +55,6 @@ const app = new Vue({
       el: "#app",
 
       // ...
-
-      components: {
-        ...window["vue-dataflow-editor"].default
-      }
     });
   </script>
 </body>

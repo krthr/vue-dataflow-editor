@@ -113,6 +113,7 @@ export default {
           link.originSlot,
           false
         );
+        
         let targetLinkPos = this.getConnectionPos(
           targetBlock,
           link.targetSlot,
@@ -349,6 +350,12 @@ export default {
       if (!block || slotNumber === -1) {
         return undefined;
       }
+
+      console.log({
+        block,
+        slotNumber,
+        isInput
+      });
 
       let x = 0;
       let y = 0;

@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
 
-    <link rel="stylesheet" href="https://unpkg.com/@krthr/vue-dataflow-editor@1.2.5/dist/vue-dataflow-editor.css">
+    <link rel="stylesheet" href="https://unpkg.com/@krthr/vue-dataflow-editor@latest/dist/vue-dataflow-editor.css">
 </head>
 
 <body>
@@ -17,7 +17,7 @@
     </div>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js">
     </script>
-    <script src="https://unpkg.com/@krthr/vue-dataflow-editor@1.2.5/dist/vue-dataflow-editor.umd.js"></script>
+    <script src="https://unpkg.com/@krthr/vue-dataflow-editor@latest/dist/vue-dataflow-editor.umd.js"></script>
     <script>
         const app = new Vue({
             data: function () {
@@ -86,11 +86,7 @@
                     }
                 }
             },
-            el: '#app',
-
-            components: {
-                ...window['vue-dataflow-editor'].default
-            }
+            el: '#app'
         })
     </script>
 
