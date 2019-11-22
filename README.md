@@ -1,4 +1,4 @@
-# [DEPECRATED] vue-dataflow-editor
+# vue-dataflow-editor
 
 ## Hey, you can use https://github.com/jagenjo/litegraph.js.
 
